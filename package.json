@@ -1,0 +1,30 @@
+{
+  "name": "create-project",
+  "version": "1.0.0",
+  "description": "a node script to scaffold my projects",
+  "main": "index.js",
+  "type": "module",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "utkarsh1311",
+  "license": "ISC",
+  "dependencies": {
+    "@inquirer/prompts": "^3.2.0",
+    "chalk": "^5.3.0",
+    "cli-spinners": "^2.9.1",
+    "execa": "^8.0.1",
+    "express": "^4.18.2",
+    "fs-extra": "^11.1.1",
+    "inquirer": "^9.2.11",
+    "nodemon": "^3.0.1",
+    "shelljs.exec": "^1.1.8"
+  },
+  "bin": {
+    "create-project": "index.js"
+  },
+  "directories": {
+    "test": "test"
+  },
+  "keywords": []
+}
