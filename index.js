@@ -1,10 +1,10 @@
 #! /usr/bin/env node
 
+import { input, select } from "@inquirer/prompts";
 import chalk from "chalk";
-import { Separator, input, select } from "@inquirer/prompts";
 import banner from "./banner.js";
-import createReactProject from "./projects/createReactApp.js";
 import createExpressProject from "./projects/createExpressProject.js";
+import createReactProject from "./projects/createReactApp.js";
 
 process.on("unhandledRejection", (err) => {
   console.log(chalk.red("Error creating project 😢😢😢"));
@@ -15,7 +15,7 @@ process.on("SIGINT", () => {
   process.exit(1);
 });
 
-console.log(chalk.green(banner));
+console.log(chalk.yellowBright(banner));
 
 console.log(chalk.bgRedBright(`Welcome to the create-project CLI`));
 
