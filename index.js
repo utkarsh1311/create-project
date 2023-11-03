@@ -17,7 +17,7 @@ process.on("SIGINT", () => {
 
 console.log(chalk.yellowBright(banner));
 
-console.log(chalk.bgRedBright(`Welcome to the create-project CLI`));
+console.log(chalk.bgRedBright(`Welcome to the make-project CLI`));
 
 const projectName = await input({
   message: chalk.blue("Enter the project name ❓: "),
