@@ -28,7 +28,6 @@ const createReactProject = async (projName) => {
     console.log(chalk.bgRedBright("Opening project in VSCode...🚀🚀🚀"));
     execSync(`cd ${pathToProject} && code .`);
   } catch (error) {
-    console.log(error);
     console.log(chalk.red("Error creating project 😢😢😢"));
   }
 };
