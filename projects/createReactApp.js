@@ -78,7 +78,9 @@ const configureProject = (pathToProject) => {
             <h1>Welcome to your new React project</h1>
         </div>
     )
-  }`;
+  }
+export default App;
+`;
 
   const indexHTML = `
   <!doctype html>
