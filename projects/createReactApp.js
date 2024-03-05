@@ -3,37 +3,37 @@ import { execSync } from "child_process";
 import path from "path";
 import { unlinkSync, writeFileSync } from "fs";
 
-const createReactProject = async (projName) => {
-  const pathToProject = path.resolve(process.cwd(), projName);
+const createReactProject = async projName => {
+	const pathToProject = path.resolve(process.cwd(), projName);
 
-  try {
-    console.log(chalk.yellow("Creating vite React project...🚀🚀🚀"));
-    execSync(`npm create vite@latest ${projName} -- --template react`);
+	try {
+		console.log(chalk.yellow("Creating vite React project...🚀🚀🚀"));
+		execSync(`npm create vite@latest ${projName} -- --template react`);
 
-    console.log(chalk.red("Installing dependencies...🛠️🛠️🛠️"));
-    execSync(`cd ${pathToProject} && npm install`);
+		console.log(chalk.red("Installing dependencies...🛠️🛠️🛠️"));
+		execSync(`cd ${pathToProject} && npm install`);
 
-    console.log(chalk.blue("Installing tailwindcss...✨✨✨"));
-    execSync(
-      `cd ${pathToProject} && npm i -D tailwindcss@latest postcss@latest autoprefixer@latest prettier prettier-plugin-tailwind`
-    );
+		console.log(chalk.blue("Installing tailwindcss...✨✨✨"));
+		execSync(
+			`cd ${pathToProject} && npm i -D tailwindcss@latest postcss@latest autoprefixer@latest prettier prettier-plugin-tailwind`
+		);
 
-    console.log(chalk.cyan("Initializing tailwindcss...🚀🚀🚀"));
-    execSync(`cd ${pathToProject} && npx tailwindcss init -p`);
+		console.log(chalk.cyan("Initializing tailwindcss...🚀🚀🚀"));
+		execSync(`cd ${pathToProject} && npx tailwindcss init -p`);
 
-    console.log(chalk.yellowBright("Configuring project and files... 🧩🧩🧩"));
-    configureProject(pathToProject);
+		console.log(chalk.yellowBright("Configuring project and files... 🧩🧩🧩"));
+		configureProject(pathToProject);
 
-    console.log(chalk.bgGreenBright("Project created successfully 🎉🎉🎉"));
-    console.log(chalk.bgRedBright("Opening project in VSCode...🚀🚀🚀"));
-    execSync(`cd ${pathToProject} && code .`);
-  } catch (error) {
-    console.log(chalk.red("Error creating project 😢😢😢"));
-  }
+		console.log(chalk.bgGreenBright("Project created successfully 🎉🎉🎉"));
+		console.log(chalk.bgRedBright("Opening project in VSCode...🚀🚀🚀"));
+		execSync(`cd ${pathToProject} && code .`);
+	} catch (error) {
+		console.log(chalk.red("Error creating project 😢😢😢"));
+	}
 };
 
-const configureTailwind = (pathToProject) => {
-  const tailwindConfig = `
+const configureTailwind = pathToProject => {
+	const tailwindConfig = `
   /** @type {import('tailwindcss').Config} */
   export default {
   content: [
@@ -46,32 +46,32 @@ const configureTailwind = (pathToProject) => {
   plugins: [],
 }`;
 
-  const cssDirectives = `
+	const cssDirectives = `
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
 `;
 
-  const tailwindConfigFile = path.resolve(pathToProject, "tailwind.config.js");
-  writeFileSync(tailwindConfigFile, tailwindConfig);
+	const tailwindConfigFile = path.resolve(pathToProject, "tailwind.config.js");
+	writeFileSync(tailwindConfigFile, tailwindConfig);
 
-  const indexCSSFile = path.resolve(pathToProject, "src", "index.css");
-  writeFileSync(indexCSSFile, cssDirectives);
+	const indexCSSFile = path.resolve(pathToProject, "src", "index.css");
+	writeFileSync(indexCSSFile, cssDirectives);
 };
 
-const removeUnusedFiles = (pathToProject) => {
-  const pathToAppCSS = path.resolve(pathToProject, "src", "App.css");
+const removeUnusedFiles = pathToProject => {
+	const pathToAppCSS = path.resolve(pathToProject, "src", "App.css");
 
-  unlinkSync(pathToAppCSS);
+	unlinkSync(pathToAppCSS);
 };
 
-const configureProject = (pathToProject) => {
-  configureTailwind(pathToProject);
-  removeUnusedFiles(pathToProject);
-  const pathToAppJS = path.resolve(pathToProject, "src", "App.jsx");
-  const pathToIndexHTML = path.resolve(pathToProject, "index.html");
+const configureProject = pathToProject => {
+	configureTailwind(pathToProject);
+	removeUnusedFiles(pathToProject);
+	const pathToAppJS = path.resolve(pathToProject, "src", "App.jsx");
+	const pathToIndexHTML = path.resolve(pathToProject, "index.html");
 
-  const appJS = `
+	const appJS = `
   function App() {
     return (
         <div>
@@ -82,7 +82,7 @@ const configureProject = (pathToProject) => {
 export default App;
 `;
 
-  const indexHTML = `
+	const indexHTML = `
   <!doctype html>
   <html lang="en">
   <head>
@@ -96,7 +96,7 @@ export default App;
   </body>
 </html>`;
 
-  writeFileSync(pathToAppJS, appJS);
-  writeFileSync(pathToIndexHTML, indexHTML);
+	writeFileSync(pathToAppJS, appJS);
+	writeFileSync(pathToIndexHTML, indexHTML);
 };
 export default createReactProject;
