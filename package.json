@@ -1,6 +1,6 @@
 {
   "name": "make-project",
-  "version": "1.2.0",
+  "version": "2.0.0",
   "description": "a node script to scaffold my projects",
   "main": "index.js",
   "type": "module",
